@@ -7,6 +7,8 @@ import java.io.Serializable;
 @Data
 public class PersonEntity implements Serializable
 {
+    public enum Role {student, guest, safety_guard, cleaner}
+
     private int personId;
 
     private String name;
@@ -15,4 +17,5 @@ public class PersonEntity implements Serializable
 
     private String face;
 
+    private Role role;
 }

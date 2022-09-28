@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/camera")
-public class CameraController
+@RequestMapping("/entranceCamera")
+public class FaceRecognitionEntranceController
 {
     @RequestMapping(value = "/face", method = RequestMethod.POST)
     public String faceRecognition(@RequestBody String face)
