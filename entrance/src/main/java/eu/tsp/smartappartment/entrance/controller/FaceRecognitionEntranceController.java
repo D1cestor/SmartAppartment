@@ -1,7 +1,12 @@
 package eu.tsp.smartappartment.entrance.controller;
 
 
+import eu.tsp.smartappartment.entrance.service.FindFaceService;
 import lombok.extern.slf4j.Slf4j;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,18 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/entranceCamera")
+@RequestMapping("entrance/entranceCamera")
 public class FaceRecognitionEntranceController
 {
-    @RequestMapping(value = "/face", method = RequestMethod.POST)
-    public String faceRecognition(@RequestBody String face)
+    private FindFaceService findFaceService;
+    private MqttClient client;
+
+    @Autowired
+    public FaceRecognitionEntranceController(FindFaceService findFaceService, MqttClient client)
     {
-        String ans = "123123123";
-        String response = "";
-        if (ans.equals(face))
-            response += "Welcome home";
-        else
-            response += "Get out";
-        return response;
+        this.findFaceService = findFaceService;
+        this.client = client;
+    }
+    @RequestMapping(value = "/face", method = RequestMethod.POST)
+    public boolean faceRecognition(@RequestBody String face)
+    {
+        return (findFaceService.findFace(face));
     }
 }
