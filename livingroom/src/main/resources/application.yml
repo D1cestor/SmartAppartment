@@ -1,0 +1,11 @@
+server:
+  port: 50000
+
+room-config:
+  id: 1
+  tenants:
+    - name: Bob
+      id: 1
+    - name: Alice
+      id: 2
+  temperature: 26
