@@ -1,13 +1,13 @@
-package eu.tsp.smartappartment.room.controller;
+package eu.tsp.smartappartment.room.controller.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("room/light")
-public class LightController
+@RequestMapping("room/window")
+public class WindowController
 {
-    public Boolean getLight()
+    public Boolean getWindow()
     {
         return true;
     }
