@@ -15,14 +15,14 @@ public class LightController
     }*/
 
     @RequestMapping(value = "/switch", method = RequestMethod.POST)
-    public int lightControl(@RequestBody String lightCtrl) {
-        String lightOpen = "open";
-        String lightClose = "close";
+    public int lightControl(@RequestBody String lightStr) {
+        String str1 = "open";
+        String str2 = "close";
 
-        if(lightCtrl.equals(lightOpen)) {
+        if(lightStr.equals(str1)) {
             return 1;
         }
-        else if(lightCtrl.equals(lightClose)) {
+        else if(lightStr.equals(str2)) {
             return 0;
         }
         else {
