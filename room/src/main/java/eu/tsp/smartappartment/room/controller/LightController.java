@@ -8,4 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LightController
 {
     public Boolean getLight()
+    {
+        return true;
+    }
 }
