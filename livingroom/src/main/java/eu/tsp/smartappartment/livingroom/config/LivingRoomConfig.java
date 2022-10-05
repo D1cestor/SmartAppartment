@@ -20,6 +20,7 @@ public class LivingRoomConfig
 {
     int id;
     Boolean light;
+    Boolean window;
     ArrayList<PersonEntity> tenants;
     int temperature;
     TemperatureRecord record;
