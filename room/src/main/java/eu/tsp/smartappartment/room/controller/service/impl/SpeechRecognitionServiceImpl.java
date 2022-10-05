@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class SpeechRecognitionServiceImpl implements SpeechRecognitionService
 {
     @Override
-    public int findCmd(String speech)
+    public int findCmd(int speech)
     {
-        return 1;
+        return speech;
     }
 }

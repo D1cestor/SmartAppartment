@@ -1,5 +1,7 @@
 package eu.tsp.smartappartment.room.controller.controller;
 
+import eu.tsp.smartappartment.room.controller.service.LightControlService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,12 +11,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("room/light")
 public class LightController
 {
-    /*public Boolean getLight()
-    {
-        return true;
-    }*/
 
-    @RequestMapping(value = "/switch", method = RequestMethod.POST)
+    private LightControlService lightControlService;
+
+    @Autowired
+    public LightController(LightControlService lightControlService)
+    {
+        this.lightControlService = lightControlService;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public boolean getLight(int uid)
+    {
+        return lightControlService.getLight(uid);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public boolean setLight(int uid,  Boolean state)
+    {
+        lightControlService.setLight(uid,state);
+        return state;
+    }
+
+    /*@RequestMapping(value = "/switch")
     public int lightControl(@RequestBody String lightStr) {
         String str1 = "open";
         String str2 = "close";
@@ -28,5 +47,5 @@ public class LightController
         else {
             return -1;    //do nothing
         }
-    }
+    }*/
 }
