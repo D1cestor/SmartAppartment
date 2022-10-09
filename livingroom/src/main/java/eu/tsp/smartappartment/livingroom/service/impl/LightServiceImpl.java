@@ -28,6 +28,6 @@ public class LightServiceImpl implements LightService
     public void setLight(Boolean state)
     {
         config.setLight(state);
-        log.info("Light is" + (state? "on": "off"));
+        log.info("Light is" + (state? " on": " off"));
     }
 }

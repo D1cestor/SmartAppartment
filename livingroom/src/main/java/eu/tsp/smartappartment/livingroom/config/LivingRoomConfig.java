@@ -2,7 +2,6 @@ package eu.tsp.smartappartment.livingroom.config;
 
 
 import eu.tsp.smartappartment.livingroom.entity.PersonEntity;
-import eu.tsp.smartappartment.livingroom.entity.PersonalTemperaturePreference;
 import eu.tsp.smartappartment.livingroom.entity.TemperatureRecord;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -21,6 +20,7 @@ public class LivingRoomConfig
     int id;
     Boolean light;
     Boolean window;
+    Boolean ac;
     ArrayList<PersonEntity> tenants;
     int temperature;
     TemperatureRecord record;

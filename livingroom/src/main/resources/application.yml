@@ -9,3 +9,6 @@ room-config:
     - name: Alice
       id: 2
   temperature: 26
+  light: true
+  ac: false
+  window: true

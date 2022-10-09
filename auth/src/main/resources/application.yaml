@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+auth-config:
+  users:
+    - name: Alice
+      password: 123456
+      role: student
+      personId: 1
+      roomId: 401
+      room: http://10.0.2.2:20000
+      livingRoom: http://10.0.2.2:50000
+      kitchen:
+
+    - name: Bob
+      password: 123457
+      role: student
+      personId: 2
+      roomId: 402
+      room: http://10.0.2.2:20001
+      livingRoom: http://10.0.2.2:50001
+      kitchen:

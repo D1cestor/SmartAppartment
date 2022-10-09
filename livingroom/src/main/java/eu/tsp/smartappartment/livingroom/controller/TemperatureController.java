@@ -23,16 +23,28 @@ public class TemperatureController
         this.temperatureService = temperatureService;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public Boolean setTemperature(@RequestBody PersonalTemperaturePreference preference)
+    @RequestMapping(method = RequestMethod.GET)
+    public Boolean getAc()
     {
-        temperatureService.SetTemperature(preference);
-        return true;
+        return temperatureService.getAc();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST)
+    public void setAc(@RequestBody String state)
+    {
+        temperatureService.setAc(state.equals("true"));
+    }
+
+    @RequestMapping(value = "/number", method = RequestMethod.GET)
     public int getTemperature()
     {
         return temperatureService.getTemperature();
+    }
+
+    @RequestMapping(value = "/number", method = RequestMethod.POST)
+    public void setTemperature(@RequestBody PersonalTemperaturePreference preference)
+    {
+        temperatureService.SetTemperature(preference);
+        log.info("Temperature is now " + temperatureService.getTemperature());
     }
 }

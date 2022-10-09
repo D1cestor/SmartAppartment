@@ -25,9 +25,9 @@ public class WindowController
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public boolean setWindow(@RequestBody Boolean state)
+    public boolean setWindow(@RequestBody String state)
     {
-        this.windowService.setWindow(state);
+        this.windowService.setWindow(state.equals("true"));
         return true;
     }
 }

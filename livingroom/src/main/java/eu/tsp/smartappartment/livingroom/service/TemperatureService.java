@@ -7,4 +7,8 @@ public interface TemperatureService
     void SetTemperature(PersonalTemperaturePreference preference);
 
     int getTemperature();
+
+    Boolean getAc();
+
+    void setAc(Boolean state);
 }

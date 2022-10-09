@@ -59,5 +59,18 @@ public class TemperatureServiceImpl implements TemperatureService
         return config.getTemperature();
     }
 
+    @Override
+    public Boolean getAc()
+    {
+        return config.getAc();
+    }
+
+    @Override
+    public void setAc(Boolean state)
+    {
+        config.setAc(state);
+        log.info("AC is now "+ (state? "on": "off"));
+    }
+
 
 }
