@@ -1,6 +1,7 @@
 import 'package:animated_background/animated_background.dart';
 import 'package:flutter/material.dart';
 import 'package:iot_ui_challenge/common/Global.dart';
+import 'package:iot_ui_challenge/models/PersonEntity.dart';
 import 'package:iot_ui_challenge/pages/control_panel/widgets/option_widget.dart';
 import 'package:iot_ui_challenge/pages/control_panel/options_enum.dart';
 import 'package:iot_ui_challenge/pages/control_panel/widgets/power_widget.dart';
@@ -10,6 +11,8 @@ import 'package:iot_ui_challenge/pages/control_panel/widgets/temp_widget.dart';
 import 'package:iot_ui_challenge/utils/slider_utils.dart';
 import 'package:iot_ui_challenge/widgets/custom_appbar.dart';
 import 'package:rainbow_color/rainbow_color.dart';
+
+import '../../models/PersonalTemperaturePreference.dart';
 
 class ControlPanelPage extends StatefulWidget {
   final String tag;
@@ -42,6 +45,7 @@ class _ControlPanelPageState extends State<ControlPanelPage>
     });
     Global.query(Global.livingRoom + "/temperature/number").then((response){
         this.temp = double.parse(response.data.toString());
+        this.progressVal = normalize(this.temp, kMinDegree, kMaxDegree);
         print(this.temp);
       setState(() {});
     });
@@ -161,6 +165,7 @@ class _ControlPanelPageState extends State<ControlPanelPage>
         setState(() {
           temp = value;
           progressVal = normalize(value, kMinDegree, kMaxDegree);
+          // Global.dio.post(Global.livingRoom + "/temperature/number", data: this.temp);
         });
       },
     );
@@ -172,23 +177,38 @@ class _ControlPanelPageState extends State<ControlPanelPage>
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Expanded(
-            //   child: SpeedWidget(
-            //       speed: speed,
-            //       changeSpeed: (val) => setState(() {
-            //             speed = val;
-            //           })),
-            // ),
-            // const SizedBox(
-            //   width: 15,
-            // ),
             Expanded(
+              //    ON/OFF
               child: PowerWidget(
                   isActive: isActive,
                   onChanged: (val) => setState(() {
-                        isActive = val;
-                        Global.dio.post(Global.livingRoom + "/temperature", data: isActive.toString());
-                      })),
+                    isActive = val;
+                    Global.dio.post(Global.livingRoom + "/temperature", data: isActive.toString());
+                  })),
+            ),
+            const SizedBox(
+              width: 15,
+            ),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  PersonalTemperaturePreference preference = PersonalTemperaturePreference();
+                  preference.temperature = this.temp;
+                  PersonEntity person = PersonEntity();
+                  person.personId = Global.personId;
+                  person.name = Global.name;
+                  person.roomId = Global.personId;
+                  preference.person = person;
+                  Global.dio.post(Global.livingRoom + "/temperature/number", data: preference);
+                  Global.query(Global.livingRoom + "/temperature/number").then((response){
+                    this.temp = double.parse(response.data.toString());
+                    this.progressVal = normalize(this.temp, kMinDegree, kMaxDegree);
+                    print(this.temp);
+                    setState(() {});
+                  });
+                },
+                child: Text('SUBMIT'),
+              ),
             ),
           ],
         ),
@@ -199,8 +219,9 @@ class _ControlPanelPageState extends State<ControlPanelPage>
             temp: temp,
             changeTemp: (val) => setState(() {
                   temp = val;
-
                   progressVal = normalize(val, kMinDegree, kMaxDegree);
+
+                  //todo
                 })),
         const SizedBox(
           height: 15,
