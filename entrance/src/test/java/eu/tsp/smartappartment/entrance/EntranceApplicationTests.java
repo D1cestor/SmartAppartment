@@ -20,7 +20,6 @@ class EntranceApplicationTests
         String pubTopic = "testtopic/1";
         String content = "Hello World";
 
-
         try {
             MqttClient client2 = new MqttClient(broker, "sub");
             client2.setCallback(new OnMessageCallback());

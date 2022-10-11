@@ -23,6 +23,8 @@ dependencies:
   json_model: ^1.0.0
   json_serializable: ^5.0.0
   font_awesome_flutter:
+  mqtt_client:
+  provider:
 
 
 dev_dependencies:
