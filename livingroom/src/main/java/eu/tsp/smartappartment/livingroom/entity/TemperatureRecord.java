@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public class TemperatureRecord
 {
     ArrayList<PersonalTemperaturePreference> records;
-    int duration;
+    int duration = 2;
 }

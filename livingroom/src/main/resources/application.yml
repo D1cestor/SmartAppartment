@@ -12,3 +12,4 @@ room-config:
   light: true
   ac: false
   window: true
+  duration: 2

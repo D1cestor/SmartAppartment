@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class PersonEntity implements Serializable
+    public class PersonEntity implements Serializable
 {
     public enum Role {student, guest, safety_guard, cleaner}
 

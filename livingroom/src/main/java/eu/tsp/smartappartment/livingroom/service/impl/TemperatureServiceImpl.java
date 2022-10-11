@@ -9,6 +9,7 @@ import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,19 +29,32 @@ public class TemperatureServiceImpl implements TemperatureService
     @Override
     public void SetTemperature(PersonalTemperaturePreference preference)
     {
+        preference.setDate(new Date());
+        int duration = 2;
         TemperatureRecord records = config.getRecord();
-        int duration = records.getDuration();
-        Date currentDate = new Date();
         int temperature = preference.getTemperature();
-        for (var record: records.getRecords())
+        if (config.getRecord() == null)
         {
-            Date recordDate = record.getDate();
-            // if the record expired, remove it
-            if (currentDate.compareTo(recordDate) > 0)
-                records.getRecords().remove(record);
-            else
-                temperature += record.getTemperature();
+            config.setRecord(new TemperatureRecord());
+            config.getRecord().setRecords(new ArrayList<>());
+            records = config.getRecord();
         }
+        else
+        {
+            Date currentDate = new Date();
+            for (var record: records.getRecords())
+            {
+                Date recordDate = record.getDate();
+                // if the record expired, remove it
+                if (currentDate.compareTo(recordDate) > 0 || record.getPerson().getPersonId() == preference.getPerson().getPersonId())
+                    records.getRecords().remove(record);
+                else
+                    temperature += record.getTemperature();
+                if (records.getRecords().size() == 0)
+                    break;
+            }
+        }
+
         Date recordDate = preference.getDate();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(recordDate);
