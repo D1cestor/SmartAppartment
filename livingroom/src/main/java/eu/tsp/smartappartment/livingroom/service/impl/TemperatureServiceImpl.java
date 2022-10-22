@@ -5,7 +5,7 @@ import eu.tsp.smartappartment.livingroom.entity.PersonalTemperaturePreference;
 import eu.tsp.smartappartment.livingroom.entity.TemperatureRecord;
 import eu.tsp.smartappartment.livingroom.service.TemperatureService;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

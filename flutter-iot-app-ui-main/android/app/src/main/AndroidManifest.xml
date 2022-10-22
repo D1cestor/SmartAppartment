@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iotuichallenge.app">
+    package="eu.tsp.smart_appartment_ui">
    <application
-        android:label="IoT UI Challenge"
+        android:label="smart_appartment_ui"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

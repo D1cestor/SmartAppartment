@@ -34,6 +34,7 @@ public class DeliveryController
         {
             client.connect();
             MqttMessage message = new MqttMessage();
+            message.setRetained(true);
             message.setPayload(content.getBytes());
             client.publish(topic, message);
             client.disconnect();

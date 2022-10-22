@@ -4,7 +4,7 @@ package eu.tsp.smartappartment.auth.controller;
 import eu.tsp.smartappartment.auth.config.AuthConfig;
 import eu.tsp.smartappartment.auth.entity.AuthResponse;
 import eu.tsp.smartappartment.auth.entity.PersonEntity;
-import lombok.var;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
