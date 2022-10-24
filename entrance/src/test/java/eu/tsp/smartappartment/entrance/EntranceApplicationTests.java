@@ -46,14 +46,14 @@ class EntranceApplicationTests
     @Test
     void deliveryTest() throws MqttException
     {
-        MqttClient client = new MqttClient(broker, "test");
-        client.setCallback(new OnMessageCallback());
-        client.connect();
-        client.subscribe("delivery/401");
-        while (true)
-        {
-
-        }
+//        MqttClient client = new MqttClient(broker, "test");
+//        client.setCallback(new OnMessageCallback());
+//        client.connect();
+//        client.subscribe("delivery/401");
+//        while (true)
+//        {
+//
+//        }
     }
 
 }
